@@ -130,4 +130,26 @@ return function(tiniest_actual: tiniest_actual)
 			expect(fail_test).exists()
 		end)
 	end)
+
+	describe("expectations", function()
+		test("is_true accepts true and rejects false", function()
+			expect(function()
+				expect(true).is_true()
+			end).never_fails()
+
+			expect(function()
+				expect(false).is_true()
+			end).fails()
+		end)
+
+		test("never_is_true accepts false and rejects true", function()
+			expect(function()
+				expect(false).never_is_true()
+			end).never_fails()
+
+			expect(function()
+				expect(true).never_is_true()
+			end).fails()
+		end)
+	end)
 end
